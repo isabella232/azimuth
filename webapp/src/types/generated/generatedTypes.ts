@@ -118,7 +118,7 @@ export interface components {
     AzimuthConfig: {
       name?: string;
       dataset: components["schemas"]["CustomObject"];
-      model_contract: components["schemas"]["SupportedModelContract"];
+      model_contract?: components["schemas"]["SupportedModelContract"];
       columns?: components["schemas"]["ColumnConfiguration"];
       rejection_class?: string;
       artifact_path?: string;
@@ -154,6 +154,14 @@ export interface components {
       binConfidence: number;
       meanBinConfidence: number;
       outcomeCount: { [key: string]: number };
+    };
+    /**
+     * This model should be used as the base for any model that defines aliases to ensure
+     * that all fields are represented correctly.
+     */
+    ConfidenceHistogramResponse: {
+      bins: components["schemas"]["ConfidenceBinDetails"][];
+      confidenceThreshold: number | null;
     };
     /**
      * This model should be used as the base for any model that defines aliases to ensure
@@ -228,7 +236,6 @@ export interface components {
       evalClassDistribution: number[];
       trainClassDistribution: number[];
       startupTasks: { [key: string]: any };
-      defaultThreshold: number[] | null;
       modelContract: components["schemas"]["SupportedModelContract"];
       predictionAvailable: boolean;
       perturbationTestingAvailable: boolean;
@@ -286,6 +293,7 @@ export interface components {
     GetUtterancesResponse: {
       utterances: components["schemas"]["Utterance"][];
       utteranceCount: number;
+      confidenceThreshold: number | null;
     };
     HTTPValidationError: {
       detail?: components["schemas"]["ValidationError"][];
@@ -861,7 +869,7 @@ export interface operations {
       /** Successful Response */
       200: {
         content: {
-          "application/json": components["schemas"]["ConfidenceBinDetails"][];
+          "application/json": components["schemas"]["ConfidenceHistogramResponse"];
         };
       };
       /** Validation Error */

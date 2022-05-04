@@ -87,7 +87,7 @@ class ConfidenceHistogramModule(FilterableModule[ModelContractConfig], Confidenc
                 for bin_index, bin_min_value in enumerate(bins[:-1])
             ]
 
-        return [ConfidenceHistogramResponse(details_all_bins=result)]
+        return [ConfidenceHistogramResponse(bins=result, confidence_threshold=self.get_threshold())]
 
 
 class ConfidenceBinIndexModule(DatasetResultModule[ModelContractConfig], ConfidenceBinningTask):

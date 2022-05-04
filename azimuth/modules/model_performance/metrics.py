@@ -94,7 +94,7 @@ class MetricsModule(FilterableModule[ModelContractConfig]):
                 filters=self.mod_options.filters, pipeline_index=self.mod_options.pipeline_index
             ),
         )
-        bins = conf_hist_mod.compute_on_dataset_split()[0].details_all_bins
+        bins = conf_hist_mod.compute_on_dataset_split()[0].bins
         ece, acc, expected = compute_ece_from_bins(bins)
         count_per_bin = [sum(b.outcome_count.values()) for b in bins]
 
