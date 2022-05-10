@@ -64,7 +64,13 @@ Docker is needed for different tasks such as releasing and updating the document
 * Install [`Docker Desktop`](https://www.docker.com/products/docker-desktop). If you are using a Mac, check "Apple logo" > "About This Mac" to know if you have a `Mac with Intel Chip` or a `Mac with Apple Chip`.
 
 ### Front End
-- Install [`Node.js`](https://nodejs.org).
+- Install [`Node.js`](https://nodejs.org) version 16 (and follow directions to add this version 
+  to your PATH).
+
+    ```shell
+    brew install node@16
+    ```
+
 - Once you've installed `Node`, you can install `yarn`.
 
     ```shell
